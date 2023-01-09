@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+<!--    Color theme of the App-->
+    <color name="skobeloff">#006C67</color>
+    <color name ="midnight_green_eagle_green">#003844</color>
+    <color name ="liberty">#5D61BE</color>
+    <color name="amaranth_pink">#F194B4</color>
+    <color name="honey_dew">#FFB100</color>
+    <color name="blanched_almond">#FFEBC6</color>
+    <color name="rich_black_forga_29">#001114</color>
+    
+    
 </resources>
