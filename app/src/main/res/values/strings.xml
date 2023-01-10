@@ -5,4 +5,14 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="send">Send</string>
+    <string name="back_to_main">Back  to Main</string>
+    <string name="forgot_password_message">No worries! We\'ll send you reset instructions on your email.</string>
+    <string name="back_to_log_in">Back to Log In</string>
+    <string name="book_list">Book List</string>
+    <string name="book_list_message">Here are the available books in the library.</string>
+    <string name="hello_there">Hello there!</string>
 </resources>

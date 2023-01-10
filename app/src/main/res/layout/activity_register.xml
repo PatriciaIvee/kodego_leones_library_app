@@ -4,35 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".RegisterActivity"
     android:background="@color/liberty">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textSize="45sp"
-        app:fontFamily="@font/nunito_extrabold"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:padding="15dp"
-        android:textColor="@color/blanched_almond"/>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="500dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/blanched_almond">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,11 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/log_in"
+                android:text="@string/register"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 app:fontFamily="@font/nunito_bold"
-                android:textColor="@color/skobeloff"
+                android:textColor="@color/midnight_green_eagle_green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -58,8 +42,48 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/email_input_layout"
+                android:id="@+id/first_name_input_layout"
                 app:layout_constraintTop_toBottomOf="@id/forgot_password_text_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="5dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/first_name_input_edit_text"
+                    android:hint="@string/first_name"
+                    android:fontFamily="@font/nunito_extrabold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/last_name_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/first_name_input_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="5dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/last_name_input_edit_text"
+                    android:hint="@string/last_name"
+                    android:fontFamily="@font/nunito_extrabold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/email_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/last_name_input_layout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:padding="5dp"
@@ -71,8 +95,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/email_input_edit_text"
                     android:hint="@string/email"
-                    android:fontFamily="@font/nunito_extrabold"
-                    />
+                    android:fontFamily="@font/nunito_extrabold" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,34 +120,44 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/forgot_password_text"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/confirm_password_text_input_layout"
                 app:layout_constraintTop_toBottomOf="@id/password_text_input_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:padding="5dp"
-                android:fontFamily="@font/nunito_extrabold"/>
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/confirm_password_input_edit_text"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:fontFamily="@font/nunito_extrabold"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/log_in"
+                android:id="@+id/register"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/forgot_password_text"
+                app:layout_constraintTop_toBottomOf="@id/confirm_password_text_input_layout"
                 android:background="@drawable/button_design"
-                android:text="@string/log_in"
-                android:fontFamily="@font/nunito_extrabold"
-                android:textColor="@color/blanched_almond"/>
+                android:text="@string/register"
+                android:fontFamily="@font/nunito_extrabold"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
