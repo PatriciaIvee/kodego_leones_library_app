@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             goToHome.putExtras(bundle)
 
             launchActivity.launch(goToHome)
-
+            finish()
         }
 
 

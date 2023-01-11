@@ -27,6 +27,6 @@ class RegisterActivity : AppCompatActivity() {
             bundle.putString("lastName",lastName)
         }
 
-
+        finish()
     }
 }
