@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
+    android:orientation="vertical"
+    android:weightSum="10"
     android:background="@color/liberty">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -18,72 +20,60 @@
         android:textColor="@color/blanched_almond"
         android:textSize="38sp"
         app:fontFamily="@font/nunito_extrabold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
+        tools:layout_editor_absoluteX="-93dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/book_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="@string/book_list"
-        android:textAlignment="center"
-        android:textColor="@color/honey_dew"
-        android:textSize="25sp"
-        app:fontFamily="@font/nunito_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hello_there_textview"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="15dp"
+        android:layout_weight="1"
+        android:text="@string/book_list"
+        android:textAlignment="textStart"
+        android:textColor="@color/honey_dew"
+        android:textSize="35sp"
+        app:fontFamily="@font/nunito_extrabold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/book_list_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book_list_message"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/book_list"
-        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/book_list_message"
+        android:paddingHorizontal="15dp"
         android:fontFamily="@font/nunito_extrabold"
-        android:textColor="@color/midnight_green_eagle_green"
+        android:textColor="@color/blanched_almond"
         android:inputType="textMultiLine"/>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="450dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/book_list_message"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardBackgroundColor="@color/blanched_almond">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        <LinearLayout
+        app:cardBackgroundColor="@color/blanched_almond"
+        app:cardCornerRadius="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/book_list_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="432dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:padding="10dp" />
-
-        </LinearLayout>
-
-
+            android:layout_height="545dp"
+            android:layout_margin="10dp"
+            android:text="Hello World!"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
 
     </androidx.cardview.widget.CardView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

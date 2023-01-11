@@ -6,6 +6,7 @@
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
     android:padding="10dp"
+    android:layout_margin="10dp"
 
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout

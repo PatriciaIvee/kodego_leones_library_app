@@ -101,13 +101,14 @@
                 android:id="@+id/forgot_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/nunito_extrabold"
+                android:padding="5dp"
                 android:text="@string/forgot_password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/password_text_input_layout"
-                android:padding="5dp"
-                android:fontFamily="@font/nunito_extrabold"/>
+                app:layout_constraintTop_toBottomOf="@id/password_text_input_layout" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/log_in"
