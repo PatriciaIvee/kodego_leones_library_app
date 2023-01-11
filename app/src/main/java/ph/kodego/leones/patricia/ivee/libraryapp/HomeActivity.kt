@@ -24,16 +24,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun init(){
-        books.add(Book("Dave", "Navor",R.drawable.book))
-        books.add(Book("Victor", "Yu", R.drawable.book))
-        books.add(Book("JP", "Soriano",R.drawable.book))
-        books.add(Book("CJ", "Tronco",R.drawable.book))
-        books.add(Book("Rene", "Palma",R.drawable.book))
-        books.add(Book("Joni", "James",R.drawable.book))
-        books.add(Book("Janreign","Aragon",R.drawable.book))
-        books.add(Book("John Rey", "Balais",R.drawable.book))
-        books.add(Book("James Nico", "Rara",R.drawable.book))
-        books.add(Book("Pat Ivee", "Leones",R.drawable.book))
-        books.add(Book("Matthew", "Mottos",R.drawable.book))
+        books.add(Book("Absalom, Absalom!", "William Faulkner",R.drawable.book))
+        books.add(Book("A Time to Kill", "John Grisham", R.drawable.book))
+        books.add(Book("Noli Me Tangere", "Jose Rizal",R.drawable.book))
+        books.add(Book("The Fault in Our Stars", "John Greene",R.drawable.book))
+        books.add(Book("I Know Why The Caged Bird Sings", "Maya Angelou",R.drawable.book))
+        books.add(Book("Dance Dance Dance", "Haruki Murakami",R.drawable.book))
+        books.add(Book("Gone With The Wind","Margaret Mitchell",R.drawable.book))
+        books.add(Book("Don Quixote", "Miguel de Cervantes",R.drawable.book))
+        books.add(Book("Lord of the Rings", "J.R.R Tolkien",R.drawable.book))
+        books.add(Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling",R.drawable.book))
+        books.add(Book("And Then There Were None", "Agatha Cristie",R.drawable.book))
+        books.add(Book("Alice's Adventures In The Wonderland", "Lewis Carroll",R.drawable.book))
+        books.add(Book("Pinocchio", "Carlo Callodi",R.drawable.book))
+        books.add(Book("Catcher In The Rye", "J.D. Salinger",R.drawable.book))
+        books.add(Book("Anne Of Green Gables", "L.M. Montgomery",R.drawable.book))
+        books.add(Book("Twenty Thousand Leagues Under the Sea", "Jules Verne",R.drawable.book))
     }
 }
