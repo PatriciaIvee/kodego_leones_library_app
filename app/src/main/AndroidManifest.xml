@@ -13,6 +13,18 @@
         android:theme="@style/Theme.LibraryApp"
         tools:targetApi="31">
         <activity
+            android:name=".ViewPagerActivity2"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AboutBookActivity"
             android:exported="false">
             <meta-data
@@ -21,45 +33,41 @@
         </activity>
         <activity
             android:name=".ForgotPasswordActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|adjustPan">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
