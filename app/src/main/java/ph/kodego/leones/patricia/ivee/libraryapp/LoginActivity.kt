@@ -33,14 +33,14 @@ class LoginActivity : AppCompatActivity() {
             emailAddress = binding.emailInputEditText.text.toString()
             password = binding.passwordInputEditText.text.toString()
 
-            var goToHome = Intent(this, HomeActivity::class.java)
+            var goToViewPagerActivity2 = Intent(this, ViewPagerActivity2::class.java)
 
             val bundle = Bundle()
             bundle.putString("emailAddress",emailAddress)
             bundle.putString("password", password)
-            goToHome.putExtras(bundle)
+            goToViewPagerActivity2.putExtras(bundle)
 
-            launchActivity.launch(goToHome)
+            launchActivity.launch(goToViewPagerActivity2)
             finish()
         }
 

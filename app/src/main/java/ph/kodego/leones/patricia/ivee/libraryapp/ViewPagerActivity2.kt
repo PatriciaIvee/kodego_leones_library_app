@@ -1,8 +1,10 @@
 package ph.kodego.leones.patricia.ivee.libraryapp
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import ph.kodego.leones.patricia.ivee.libraryapp.adapter.FragmentAdapter
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.ActivityViewPagerBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.fragments.LibraryListFragment
@@ -24,14 +26,17 @@ class ViewPagerActivity2 : AppCompatActivity() {
         fragmentAdapter.addFragment(SearchFragment())
         fragmentAdapter.addFragment(TransactionFragment())
 
-
-
         with(binding.viewPager2){
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             setPageTransformer(ZoomOutPageTransformer())
             adapter = fragmentAdapter
 
         }
+
+        TabLayoutMediator(binding.tabLayout,binding.viewPager2){
+                tab, position ->
+            tab.text = " ${(position + 1)}"
+        }.attach()
 
     }
 

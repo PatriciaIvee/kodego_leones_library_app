@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.LibraryListFragment"
-    android:background="@color/amaranth_pink">
+    android:background="@color/amaranth_pink"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hello_there_textview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/book_list"
-        android:textSize="40sp"/>
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/hello_there"
+        android:textAlignment="textStart"
+        android:textColor="@color/blanched_almond"
+        android:textSize="38sp"
+        app:fontFamily="@font/nunito_extrabold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-93dp" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/book_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hello_there_textview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="15dp"
+        android:layout_weight="1"
+        android:text="@string/book_list"
+        android:textAlignment="textStart"
+        android:textColor="@color/honey_dew"
+        android:textSize="35sp"
+        app:fontFamily="@font/nunito_extrabold" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/book_list_message"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/book_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/book_list_message"
+        android:paddingHorizontal="15dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:textColor="@color/blanched_almond"
+        android:inputType="textMultiLine"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="575dp"
+        app:cardBackgroundColor="@color/blanched_almond"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/book_list_message"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/book_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="556dp"
+            android:layout_margin="10dp"
+            android:text="Hello World!"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
