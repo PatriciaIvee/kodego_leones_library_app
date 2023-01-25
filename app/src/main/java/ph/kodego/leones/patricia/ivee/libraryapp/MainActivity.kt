@@ -1,10 +1,9 @@
 package ph.kodego.leones.patricia.ivee.libraryapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,13 +22,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.logIn.setOnClickListener {
+
             var goToLogIn = Intent(this,LoginActivity::class.java)
-            launchActivity.launch(goToLogIn)
+
+            startActivity(goToLogIn)
         }
 
-        binding.register.setOnClickListener {
-            var goToRegister = Intent(this,RegisterActivity::class.java)
+        binding.btnRegister.setOnClickListener {
+            val goToRegister = Intent(this,RegisterActivity2::class.java)
             launchActivity.launch(goToRegister)
         }
+
+//        binding.btnRegister2.setOnClickListener {
+//            val goToForgotPassword = Intent(this,ForgotPasswordActivity::class.java)
+//            launchActivity.launch(goToForgotPassword)
+//        }
     }
 }

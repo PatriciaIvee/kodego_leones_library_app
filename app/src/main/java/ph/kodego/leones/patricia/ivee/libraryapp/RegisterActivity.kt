@@ -1,5 +1,6 @@
 package ph.kodego.leones.patricia.ivee.libraryapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.ActivityRegisterBinding
@@ -15,7 +16,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.register.setOnClickListener {
+        binding.btnRegisterAccount.setOnClickListener {
 
             firstName = binding.firstNameInputEditText.text.toString()
             lastName = binding.lastNameInputEditText.text.toString()
@@ -27,6 +28,5 @@ class RegisterActivity : AppCompatActivity() {
             bundle.putString("lastName",lastName)
         }
 
-        finish()
     }
 }

@@ -3,6 +3,8 @@ package ph.kodego.leones.patricia.ivee.libraryapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.ActivityLoginBinding
 
@@ -44,8 +46,17 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.forgotPasswordTextView.setOnClickListener {
+
+        }
 
 
+    }
+
+    fun onClick(view: View) {
+
+        var goToForgotPassword = Intent(this, ForgotPasswordActivity::class.java)
+        launchActivity.launch(goToForgotPassword)
 
     }
 
