@@ -28,7 +28,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         }
 
-        binding.backToMain.setOnClickListener{
+        binding.backToLogIn.setOnClickListener{
             var goBackToMain = Intent(this,LoginActivity::class.java)
             launchActivity.launch(goBackToMain)
         }

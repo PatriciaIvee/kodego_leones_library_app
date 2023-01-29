@@ -13,9 +13,14 @@ class Book(title: String): Publication(title) {
     var publisherId: Int = 0
 
 
-    constructor(title: String,authors: ArrayList<Author>) : this(title) {
+    constructor() : this("Unknown", ArrayList(), 0)
+    constructor(title: String,authors: ArrayList<Author>,img : Int) : this(title) {
         this.title = title
         this.img = R.drawable.book
         this.authors = authors
     }
+
+
+
+
 }

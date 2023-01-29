@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/library_list_fragment"
-        android:name="ph.kodego.leones.patricia.ivee.libraryapp.fragments.LibraryListFragment"
+        android:name="ph.kodego.leones.patricia.ivee.libraryapp.fragments.librarylist.LibraryListFragment"
         android:label="Library List Fragment"
         tools:layout="@layout/fragment_library_list">
 

@@ -20,17 +20,17 @@ class RegisterActivity2 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRegisterAccount.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("firstName",firstName)
-            bundle.putString("lastName",lastName)
-            bundle.putString("emailAddress",emailAddress)
-            bundle.putString("password",password)
+//            val bundle = Bundle()
+//            bundle.putString("firstName",firstName)
+//            bundle.putString("lastName",lastName)
+//            bundle.putString("emailAddress",emailAddress)
+//            bundle.putString("password",password)
 
-            var goToHome = Intent(this, HomeActivity::class.java)
-            goToHome.putExtras(bundle)
+            var goToViewPagerActivity2 = Intent(this, ViewPagerActivity2::class.java)
+            startActivity(goToViewPagerActivity2)
 
-            name = binding.firstNameInputEditText.text.toString()
-
+//            name = binding.firstNameInputEditText.text.toString()
+            finish()
         }
 
         binding.btnLogIn.setOnClickListener{
@@ -39,6 +39,7 @@ class RegisterActivity2 : AppCompatActivity() {
 
             finish()
         }
+
 
     }
 }

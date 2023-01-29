@@ -4,15 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.ActivityLoginBinding
+import ph.kodego.leones.patricia.ivee.libraryapp.fragments.librarylist.LibraryListFragment
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
-    private lateinit var emailAddress: String
-    private lateinit var password : String
+    private lateinit var userNameBundle: String
+    private lateinit var passwordBundle : String
 
     private val launchActivity = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -25,30 +25,29 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.forgotPasswordTextView.setOnClickListener{
+        binding.forgotPasswordText.setOnClickListener{
             var goToForgotPassword = Intent(this, ForgotPasswordActivity::class.java)
             launchActivity.launch(goToForgotPassword)
 
         }
 
         binding.logIn.setOnClickListener {
-            emailAddress = binding.emailInputEditText.text.toString()
-            password = binding.passwordInputEditText.text.toString()
+            userNameBundle = binding.userNameInputEditText.text.toString()
+            passwordBundle = binding.passwordInputEditText.text.toString()
 
             var goToViewPagerActivity2 = Intent(this, ViewPagerActivity2::class.java)
+            var fragmentLibrary = LibraryListFragment()
 
-            val bundle = Bundle()
-            bundle.putString("emailAddress",emailAddress)
-            bundle.putString("password", password)
+            var bundle = Bundle()
+
+            bundle.putString("userNameBundle", userNameBundle.toString())
+            bundle.putString("passwordBundle", passwordBundle)
+
             goToViewPagerActivity2.putExtras(bundle)
-
             launchActivity.launch(goToViewPagerActivity2)
             finish()
         }
 
-        binding.forgotPasswordTextView.setOnClickListener {
-
-        }
 
 
     }
