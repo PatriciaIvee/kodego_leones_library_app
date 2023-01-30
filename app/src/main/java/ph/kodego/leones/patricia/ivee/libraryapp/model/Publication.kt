@@ -11,7 +11,7 @@ open class Publication {
     var img: Int = 0
     var datePublished = Date(0,0,0)
     var publicationstatus :String = PublicationStatus.UNSPECIFIED.toString()
-    var accountId: Int = 0
+    var accountId: Int = 0 // For the account that borrowed the book
 
     constructor(title: String){
         this.title = title

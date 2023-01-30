@@ -23,7 +23,7 @@ class LibraryListFragment : Fragment() {
     private lateinit var bookAdapter: BookAdapter
     private var books: ArrayList<Book> = ArrayList()
     private lateinit var itemTouchHelper: ItemTouchHelper
-    private final var LOGINFO = "LIBRARYLISTACTIVITY"
+    private final var LOGINFO = "LIBRARYLIST_ACTIVITY"
     private lateinit var viewModel: LibraryListViewModel
     private lateinit var dao: BookDAO
 
@@ -55,6 +55,11 @@ class LibraryListFragment : Fragment() {
 
 //        val data = this.arguments
 //        binding.helloThereTextview.text = "Hello ${data!!.getString(" userNameBundle ")}"
+        val userName = getArguments()?.getString("userNameBundle")
+        val password = arguments?.getString("passwordBundle")
+
+        Log.d(LOGINFO,"$userName")
+        Log.d(LOGINFO,"$password")
 
         val data = this.arguments
         if (data != null) {

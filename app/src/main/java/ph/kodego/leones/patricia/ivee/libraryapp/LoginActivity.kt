@@ -36,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
             passwordBundle = binding.passwordInputEditText.text.toString()
 
             var goToViewPagerActivity2 = Intent(this, ViewPagerActivity2::class.java)
-            var fragmentLibrary = LibraryListFragment()
 
             var bundle = Bundle()
 
@@ -44,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
             bundle.putString("passwordBundle", passwordBundle)
 
             goToViewPagerActivity2.putExtras(bundle)
+
+//           TODO: ADD CODE THAT WILL CHECK IF THE USERNAME AND PASSWORD IS SAME FROM THE DATABASE
+
             launchActivity.launch(goToViewPagerActivity2)
             finish()
         }

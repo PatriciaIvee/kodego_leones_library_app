@@ -4,7 +4,9 @@ package ph.kodego.leones.patricia.ivee.libraryapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import ph.kodego.leones.patricia.ivee.libraryapp.adapter.FragmentAdapter
@@ -25,21 +27,24 @@ class ViewPagerActivity2 : AppCompatActivity() {
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        var fragmentAdapter = FragmentAdapter(supportFragmentManager,lifecycle)
-        fragmentAdapter.addFragment(LibraryListFragment())
-        fragmentAdapter.addFragment(SearchFragment())
-        fragmentAdapter.addFragment(TransactionFragment())
-
         val bundle = intent.extras
         Log.d(LOGINFO,"${bundle!!.getString("userNameBundle")}")
         Log.d(LOGINFO,"${bundle!!.getString("passwordBundle")}")
 
+        val data = Bundle()
+
+        data.putString("userNameBundle", "${bundle!!.getString("userNameBundle")}" )
+        data.putString("passwordBundle", "${bundle!!.getString("passwordBundle")}")
+
+        val libraryListFragment = LibraryListFragment()
+        libraryListFragment.arguments = data
+
+        var fragmentAdapter = FragmentAdapter(supportFragmentManager,lifecycle)
+        fragmentAdapter.addFragment(libraryListFragment)
+        fragmentAdapter.addFragment(SearchFragment())
+        fragmentAdapter.addFragment(TransactionFragment())
 
 
-//        val libraryListViewModel = ViewModelProvider(this).get(LibraryListViewModel::class.java)
-//        libraryListViewModel.userNameBundle.value = userNameBundle
-//        libraryListViewModel.passwordBundle.value = passwordBundle
 
         with(binding.viewPager2){
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -64,3 +69,7 @@ class ViewPagerActivity2 : AppCompatActivity() {
         }
     }
 }
+// ON CREATE
+//        val libraryListViewModel = ViewModelProvider(this).get(LibraryListViewModel::class.java)
+//        libraryListViewModel.userNameBundle.value = userNameBundle
+//        libraryListViewModel.passwordBundle.value = passwordBundle

@@ -29,11 +29,15 @@ class BookDAOSQLImpl(var context: Context): BookDAO{
         db.close()
     }
 
-
+// TODO: Get other publications (COMICS, MAGAZINE ETC.) MAYBE PUT IT IN A NEW DAO
     override fun getBooks(): ArrayList<Book> {
         val bookList :ArrayList<Book> = ArrayList()
-        val selectQuery = "SELECT ${DatabaseHandler.title}" +
-                "FROM ${DatabaseHandler.tablePublication}"
+        val selectQuery = "SELECT ${DatabaseHandler.bookId}, " +
+                "${DatabaseHandler.isbn10Number}, " +
+                "${DatabaseHandler.isbn13Number}, " +
+                "${DatabaseHandler.publicationId}, " +
+                "${DatabaseHandler.publisherId} " +
+                "FROM ${DatabaseHandler.tableBooks}"
 
         val databaseHandler:DatabaseHandler = DatabaseHandler(context)
         val db = databaseHandler.readableDatabase

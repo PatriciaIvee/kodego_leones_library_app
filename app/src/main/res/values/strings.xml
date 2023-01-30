@@ -25,6 +25,9 @@
     <string name="comics_list">Comics List</string>
     <string name="comics_list_message">Here are the list of available comics in the library</string>
     <string name="magazines_list">Magazines List</string>
-    <string name="magazines_list_message">Here are the list of available magainzes.</string>
+    <string name="magazines_list_message">Here are the list of available magazines.</string>
     <string name="user_name">User Name</string>
+    <string name="search_book">Search Book</string>
+    <string name="transaction">Transaction</string>
+    <string name="return_books">Return Books</string>
 </resources>
