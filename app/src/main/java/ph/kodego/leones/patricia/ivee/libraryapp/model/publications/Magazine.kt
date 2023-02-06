@@ -1,8 +1,6 @@
-package ph.kodego.leones.patricia.ivee.libraryapp.model
+package ph.kodego.leones.patricia.ivee.libraryapp.model.publications
 
-import ph.kodego.leones.patricia.ivee.libraryapp.R
-
-class Magazine (title: String):Publication(title)  {
+class Magazine (title: String): Publication(title)  {
 //    (var magazineTitle:String = "Unknown", var magazinePublisher: String = "Unknown", var img: Int)
 
     var magazineId: Int = 0

@@ -1,4 +1,4 @@
-package ph.kodego.leones.patricia.ivee.libraryapp.model
+package ph.kodego.leones.patricia.ivee.libraryapp.model.publications
 
 import ph.kodego.leones.patricia.ivee.libraryapp.R
 
@@ -14,8 +14,8 @@ class Book(title: String): Publication(title) {
 
 
     constructor() : this("Unknown", ArrayList(), 0)
-    constructor(title: String,authors: ArrayList<Author>,img : Int) : this(title) {
-        this.title = title
+    constructor(title: String, authors: ArrayList<Author>, img : Int) : this(title) {
+        this.publicationTitle = title
         this.img = R.drawable.book
         this.authors = authors
     }

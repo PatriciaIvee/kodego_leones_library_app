@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
-import ph.kodego.leones.patricia.ivee.libraryapp.model.Book
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Book
 
 interface BookDAO {
     fun addBook (book: Book)
@@ -20,7 +20,7 @@ class BookDAOSQLImpl(var context: Context): BookDAO{
         val db = databaseHandler.writableDatabase
 
         val contentValues = ContentValues().apply {
-            put(DatabaseHandler.title, book.title)
+            put(DatabaseHandler.title, book.publicationTitle)
 //            put(DatabaseHandler.lastNamePerson, DatabaseHandler.firstNamePerson, book.authors)
         }
 
@@ -32,12 +32,15 @@ class BookDAOSQLImpl(var context: Context): BookDAO{
 // TODO: Get other publications (COMICS, MAGAZINE ETC.) MAYBE PUT IT IN A NEW DAO
     override fun getBooks(): ArrayList<Book> {
         val bookList :ArrayList<Book> = ArrayList()
+
         val selectQuery = "SELECT ${DatabaseHandler.bookId}, " +
-                "${DatabaseHandler.isbn10Number}, " +
-                "${DatabaseHandler.isbn13Number}, " +
-                "${DatabaseHandler.publicationId}, " +
-                "${DatabaseHandler.publisherId} " +
-                "FROM ${DatabaseHandler.tableBooks}"
+                "bookTable.${DatabaseHandler.isbn10Number}, " +
+                "bookTable.${DatabaseHandler.isbn13Number}, " +
+                "bookTable${DatabaseHandler.publicationId}, " +
+                "bookTable${DatabaseHandler.publisherId}, " +
+                "publicationTable.${DatabaseHandler.title} " +
+                "FROM ${DatabaseHandler.tableBooks} bookTable"
+
 
         val databaseHandler:DatabaseHandler = DatabaseHandler(context)
         val db = databaseHandler.readableDatabase
@@ -53,7 +56,12 @@ class BookDAOSQLImpl(var context: Context): BookDAO{
         if (cursor.moveToFirst()) {
             do {
                 book = Book()
-                book.title = cursor.getString(0)
+                book.bookId = cursor.getInt(0)
+                book.publicationTitle = ""
+                book.isbn10number = cursor.getString(1)
+                book.isbn13number = cursor.getString(2)
+                book.publicationId =  cursor.getInt(3)
+                book.publisherId = cursor.getInt(4)
 
                 bookList.add(book)
 

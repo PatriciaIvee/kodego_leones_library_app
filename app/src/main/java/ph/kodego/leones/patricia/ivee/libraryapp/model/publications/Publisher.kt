@@ -1,4 +1,4 @@
-package ph.kodego.leones.patricia.ivee.libraryapp.model
+package ph.kodego.leones.patricia.ivee.libraryapp.model.publications
 
 import java.sql.Date
 

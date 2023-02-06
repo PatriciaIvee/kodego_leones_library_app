@@ -1,6 +1,6 @@
-package ph.kodego.leones.patricia.ivee.libraryapp.model
+package ph.kodego.leones.patricia.ivee.libraryapp.model.publications
 
-class AudioVideoMaterial(title: String):Publication(title)  {
+class AudioVideoMaterial(title: String): Publication(title)  {
 //    (var magazineTitle:String = "Unknown", var magazinePublisher: String = "Unknown", var img: Int)
 
     var audioVideoMaterialId: Int = 0

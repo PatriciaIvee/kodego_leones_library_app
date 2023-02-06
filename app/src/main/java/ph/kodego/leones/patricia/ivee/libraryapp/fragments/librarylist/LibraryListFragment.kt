@@ -13,8 +13,8 @@ import ph.kodego.leones.patricia.ivee.libraryapp.adapter.BookAdapter
 import ph.kodego.leones.patricia.ivee.libraryapp.dao.BookDAO
 import ph.kodego.leones.patricia.ivee.libraryapp.dao.BookDAOSQLImpl
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.FragmentLibraryListBinding
-import ph.kodego.leones.patricia.ivee.libraryapp.model.Author
-import ph.kodego.leones.patricia.ivee.libraryapp.model.Book
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Author
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Book
 import ph.kodego.leones.patricia.ivee.libraryapp.model.SwipeCallBack
 
 class LibraryListFragment : Fragment() {
@@ -37,15 +37,15 @@ class LibraryListFragment : Fragment() {
 //        viewModel.passwordBundle.value = passwordData
     }
 
-    fun init(){
-        var authors: ArrayList<Author> = ArrayList()
-        authors.add(Author("William", "Faulkner"))
-        books.add(Book("Absalom, Absalom!", authors, R.drawable.book))
-        var authors2:ArrayList<Author> = ArrayList()
-        authors2.add(Author("John", "Grisham"))
-        books.add(Book("A Time to Kill", authors2, R.drawable.book))
-
-    }
+//    fun init(){
+//        var authors: ArrayList<Author> = ArrayList()
+//        authors.add(Author("William", "Faulkner"))
+//        books.add(Book("Absalom, Absalom!", authors, R.drawable.book))
+//        var authors2:ArrayList<Author> = ArrayList()
+//        authors2.add(Author("John", "Grisham"))
+//        books.add(Book("A Time to Kill", authors2, R.drawable.book))
+//
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

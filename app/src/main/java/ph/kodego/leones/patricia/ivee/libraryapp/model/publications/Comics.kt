@@ -1,8 +1,8 @@
-package ph.kodego.leones.patricia.ivee.libraryapp.model
+package ph.kodego.leones.patricia.ivee.libraryapp.model.publications
 
 import ph.kodego.leones.patricia.ivee.libraryapp.R
 
-class Comics(title : String):Publication(title) {
+class Comics(title : String): Publication(title) {
     var comicsId : Int = 0
     var isbn10number : String = ""
     var isbn13number : String = ""
@@ -10,7 +10,7 @@ class Comics(title : String):Publication(title) {
     var illustrators: ArrayList<Illustrator> = ArrayList()
 
     constructor(title: String,authors: ArrayList<Author>) : this(title) {
-        this.title = title
+        this.publicationTitle = title
         this.img = R.drawable.book
         this.authors = authors
     }

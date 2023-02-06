@@ -27,10 +27,9 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
         val firstNamePerson = "person_first_name"
         val lastNamePerson = "person_last_name"
 
+
         val tableAuthor = "author_table"
         val authorId = "author_id"
-        val tableBookAuthors = "book_authors_table"
-        val bookAuthorId = "book_author_id"
 
 //        personId
 
@@ -52,9 +51,10 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
         val publicationType = "publication_type"
         val title = "title"
         val datePublished = "date_published"
-        val status = "status"
+        val pubStatus = "status"
 //        account_id
-
+        val tablePublicationAuthors = "publication_authors_table"
+        val publicationAuthorId = "publication_author_id"
 
 
         val tableBooks = "book_table"
@@ -113,7 +113,11 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
             "CREATE TABLE $tableAuthor " +
                     "($authorId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$personId INTEGER, " +
-                    "FOREIGN KEY($personId) REFERENCES $tablePerson($personId))"
+                    "$firstNamePerson TEXT, " +
+                    "$lastNamePerson TEXT, " +
+                    "FOREIGN KEY($personId) REFERENCES $tablePerson($personId), " +
+                    "FOREIGN KEY($firstNamePerson) REFERENCES $tablePerson($firstNamePerson), " +
+                    "FOREIGN KEY($lastNamePerson) REFERENCES $tablePerson($lastNamePerson))"
         db?.execSQL(CREATEAUTHORSTABLE)
 
         db?.execSQL("INSERT into $tableAuthor($personId)" +
@@ -143,30 +147,31 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
 
 //        question: Should I remove the Primary Key autoIncrement
 
-        val CREATEBOOKAUTHORSTABLE =
-            "CREATE TABLE $tableBookAuthors " +
-                    "($bookAuthorId INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "$bookId INTEGER, " +
+
+    val CREATEPUBLICATIONAUTHORSTABLE =
+            "CREATE TABLE $tablePublicationAuthors " +
+                    "($publicationAuthorId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$publicationId INTEGER, " +
                     "$authorId INTEGER, " +
-                    "FOREIGN KEY($bookId) REFERENCES $tableBooks($bookId), " +
+                    "FOREIGN KEY($publicationId) REFERENCES $tablePublication($publicationId), " +
                     "FOREIGN KEY($authorId) REFERENCES $tableAuthor($authorId))"
-        db?.execSQL(CREATEBOOKAUTHORSTABLE)
+    db?.execSQL(CREATEPUBLICATIONAUTHORSTABLE)
 
 //        If you want to put 2 or more authors to one book
 //        db?.execSQL("INSERT into $tableBookAuthor($bookId,$authorId)" +
 //                "values (1,1), (1,2), (1,3)")
 
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (1,1)")
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (2,2)")
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (3,3)")
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (4,4)")
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (5,5), (5,6)")
-        db?.execSQL("INSERT into $tableBookAuthors($bookId,$authorId)" +
+        db?.execSQL("INSERT into $tablePublicationAuthors($publicationId,$authorId)" +
                 "values (6,7)")
 
         val CREATEPUBLICATIONSTABLE =
@@ -174,33 +179,33 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
                     "($publicationId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$publicationType TEXT, " +
                     "$title TEXT, " +
-                    "$datePublished DATE, " +
-                    "$status TEXT, " +
+                    "$datePublished TEXT, " +
+                    "$pubStatus TEXT, " +
                     "$accountId INTEGER)"
         db?.execSQL(CREATEPUBLICATIONSTABLE)
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','The Lovely Bones', '2004-04-20', 'UNSPECIFIED', 0 )")
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','Pride and Prejudice', '2002-12-31', 'UNSPECIFIED', 0 )")
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','Sapiens: A Brief History of Humankind', '2015-02-10', 'UNSPECIFIED', 0 )")
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','The Great Gatsby', '1925-04-10', 'UNSPECIFIED', 0 )")
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','1984', '1961-01-01', 'UNSPECIFIED', 0 )")
 
         db?.execSQL("INSERT into $tablePublication" +
-                "($publicationType,$title,$datePublished,$status,$accountId)" +
+                "($publicationType,$title,$datePublished,$pubStatus,$accountId)" +
                 " values ('Book','To Kill a Mockingbird', '2002-01-01', 'UNSPECIFIED', 0 )")
 
         val CREATEBOOKSTABLE =
@@ -274,7 +279,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASENAME,n
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS $tableBookAuthors")
+        db!!.execSQL("DROP TABLE IF EXISTS $tablePublicationAuthors")
         db!!.execSQL("DROP TABLE IF EXISTS $tableAuthor")
         db!!.execSQL("DROP TABLE IF EXISTS $tableBooks")
         db!!.execSQL("DROP TABLE IF EXISTS $tablePerson")
