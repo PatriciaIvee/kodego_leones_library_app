@@ -7,14 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAO
+import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAOSQLImpl
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.AboutBookDialogueBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.BookItemBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.PublicationItemBinding
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Author
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Book
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Publication
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.PublicationAuthors
+
 
 class PublicationAdapter (var publications: ArrayList<Publication>, var activity: Activity?)
     : RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder>() {
+
 
     override fun getItemCount(): Int {
         return publications.size
@@ -46,27 +52,45 @@ class PublicationAdapter (var publications: ArrayList<Publication>, var activity
 //        pass the data to be sent to viewHolder
     }
 
+
     inner class PublicationViewHolder(private val itemBinding: PublicationItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
+
         private var publication = Publication()
+        private var publicationDAO :PublicationDAO = activity?.let { PublicationDAOSQLImpl(it) }!!
+
+        private var publicationAuthors = arrayListOf<PublicationAuthors>()
+//        private var publicationAuthors: PublicationAuthors
+
 
         init {
             itemView.setOnClickListener(this)
+            publicationAuthors = publicationDAO.getPublicationWithAuthors()
         }
 
         fun bindPublication(publication: Publication) {
             this.publication = publication
+//            this.publicationDAO = publicationDAO
+            val publicationAuthors = publicationDAO.getPublicationWithAuthors().filter {
+                it.publicationId == publication.publicationId
+            }
 
-//            val authorNames = StringBuilder()
-//            for (author in book.authors) {
-//                authorNames.append(author.personFirstName + " " + author.personLastName)
-////                authorNames.append(", ")
+            val authorNames = StringBuilder()
+            for (publicationAuthor in publicationAuthors) {
+                for (author in publicationAuthor.authors) {
+                    authorNames.append(author.personFirstName + " " + author.personLastName)
+                    authorNames.append(", ")
+                }
+            }
+            var names = authorNames.toString()
+
+//            if (names.length > 2) {
+//                names = names.substring(0, names.length - 2)
 //            }
-//            val names = authorNames.toString()
-
 
             itemBinding.publicationImage.setImageResource(publication.img)
             itemBinding.publicationTitleText.text = "${publication.publicationTitle}"
+            itemBinding.publicationAuthorText.text = "${names}"
 
 //            itemBinding.bookAuthorText.text = "${names}"
 //                to set picture

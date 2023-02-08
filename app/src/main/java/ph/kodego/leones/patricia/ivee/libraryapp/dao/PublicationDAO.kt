@@ -4,17 +4,17 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
+import android.util.Log
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Publication
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.PublicationAuthors
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.PublicationStatus
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 interface PublicationDAO {
     fun getPublications(): ArrayList<Publication>
-    fun getPublicationType(): ArrayList<Publication>
-    fun getPublicationWithAuthors(publicationAuthorId:Int):ArrayList<PublicationAuthors>
+    fun getPublicationType(type: String): ArrayList<Publication>
+    fun getPublicationWithAuthors():ArrayList<PublicationAuthors>
     fun addPublication(publication: Publication)
     fun borrowPublication(publication: Publication)
     fun returnPublication(publication: Publication)
@@ -110,6 +110,7 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
         try {
             cursor = db.rawQuery(selectQuery,null)
         }catch (e: SQLiteException) {
+            Log.e("ERROR", "Error in rawQuery: " + e.message)
             db.close()
             return ArrayList()
         }
@@ -143,7 +144,7 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
         return publicationList
     }
 
-    override fun getPublicationType(): ArrayList<Publication> {
+    override fun getPublicationType(type:String): ArrayList<Publication> {
         val publicationList: ArrayList<Publication> = ArrayList()
 //        Find string in the columns (search)
         val columns  = arrayOf(DatabaseHandler.publicationId,
@@ -161,13 +162,14 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
             cursor = db.query(DatabaseHandler.tablePublication,
                 columns,
 //                parang wild search
-                "${DatabaseHandler.publicationType} =  ?",
+                "${DatabaseHandler.publicationType} =  ${type}",
                 null,
                 null,
                 null,
                 DatabaseHandler.title
             )
         }catch (e:SQLiteException) {
+            Log.e("ERROR", "Error in rawQuery: " + e.message)
             db.close()
             return ArrayList()
         }
@@ -202,36 +204,34 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
         return publicationList
     }
 
-    override fun getPublicationWithAuthors(publicationAuthorId: Int): ArrayList<PublicationAuthors> {
+    override fun getPublicationWithAuthors(): ArrayList<PublicationAuthors> {
         val publicationAuthorsList: ArrayList<PublicationAuthors> = ArrayList()
+
+
+        val selectQuery = "SELECT ${DatabaseHandler.publicationId}, " +//0
+                "${DatabaseHandler.publicationType}, " + //1
+                "${DatabaseHandler.title}, " + //2
+                "${DatabaseHandler.datePublished}, " + //3
+                "${DatabaseHandler.pubStatus} " + //4
+                "FROM ${DatabaseHandler.tablePublication}"
 
         val databaseHandler:DatabaseHandler = DatabaseHandler(context)
         val db = databaseHandler.readableDatabase
         var cursor: Cursor? = null
 
-
-
-        val selectQuery = "SELECT ${DatabaseHandler.publicationId}, " +
-                "${DatabaseHandler.publicationType}, " +
-                "${DatabaseHandler.title}, " +
-                "${DatabaseHandler.datePublished}, " +
-                "${DatabaseHandler.pubStatus} " +
-                "FROM ${DatabaseHandler.tablePublication}"
-
-
-
         try {
             cursor = db.rawQuery(selectQuery,null)
         }catch (e:SQLiteException) {
+            Log.e("ERROR", "Error in rawQuery: " + e.message)
             db.close()
             return ArrayList()
         }
 
-        var publicationAuthors = PublicationAuthors()
+        var publicationWithAuthors = PublicationAuthors()
         if (cursor.moveToFirst()) {
             do {
                 var publication = Publication()
-                publicationAuthors = PublicationAuthors()
+                publicationWithAuthors = PublicationAuthors()
 //                publicationAuthorsList = publicationAuthors()
                 publication.publicationId = cursor.getInt(0)
                 publication.publicationType = cursor.getString(1)
@@ -248,9 +248,9 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
                         "DAMAGED" -> PublicationStatus.DAMAGED
                         else -> PublicationStatus.UNSPECIFIED
                     }
-                publicationAuthors.publication = publication
+                publicationWithAuthors.publication = publication
 
-                publicationAuthorsList.add(publicationAuthors)
+                publicationAuthorsList.add(publicationWithAuthors)
 
             }while (cursor.moveToNext())
         }
@@ -258,8 +258,8 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
 
         var authorDAO = AuthorDAOSQLImpl(context)
 //        Use Either one of these codes to retrieve data from another table
-        for(publicationAuthor in publicationAuthorsList){
-            publicationAuthor.authors = authorDAO.getAuthors(publicationAuthor.publication.publicationId)
+        for(publicationAuthors in publicationAuthorsList){
+            publicationAuthors.authors = authorDAO.getAuthors(publicationAuthors.publication.publicationId)
         }
 
         for (index in 0 until publicationAuthorsList.size){
@@ -269,6 +269,28 @@ class PublicationDAOSQLImpl(var context: Context): PublicationDAO{
         db.close()
         return publicationAuthorsList
     }
+
+
+//    fun getAuthors(db: SQLiteDatabase?) : ArrayList<Author> {
+//        val authors = ArrayList<Author>()
+//        val selectQuery = "SELECT * FROM $tablePublicationAuthors"
+//        val cursor = db?.rawQuery(selectQuery, null)
+//
+//        if (cursor != null && cursor.moveToFirst()) {
+//            do {
+//                val author = Author(
+//                    cursor.getInt(cursor.getColumnIndex($publicationAuthorId)),
+//                    cursor.getInt(cursor.getColumnIndex($publicationId)),
+//                    cursor.getString(cursor.getColumnIndex(firstNamePerson)),
+//                    cursor.getString(cursor.getColumnIndex(lastNamePerson))
+//                )
+//                publicationAuthors.add(publicationAuthor)
+//            } while (cursor.moveToNext())
+//        }
+//        cursor?.close()
+//        return publicationAuthors
+//    }
+
 
 
 }

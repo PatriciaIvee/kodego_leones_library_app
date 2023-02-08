@@ -10,12 +10,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import ph.kodego.leones.patricia.ivee.libraryapp.R
 import ph.kodego.leones.patricia.ivee.libraryapp.adapter.BookAdapter
+import ph.kodego.leones.patricia.ivee.libraryapp.adapter.PublicationAdapter
 import ph.kodego.leones.patricia.ivee.libraryapp.dao.BookDAO
 import ph.kodego.leones.patricia.ivee.libraryapp.dao.BookDAOSQLImpl
+import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAO
+import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAOSQLImpl
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.FragmentLibraryListBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Author
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Book
 import ph.kodego.leones.patricia.ivee.libraryapp.model.SwipeCallBack
+import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Publication
 
 class LibraryListFragment : Fragment() {
     private var _binding: FragmentLibraryListBinding? = null
@@ -26,6 +30,9 @@ class LibraryListFragment : Fragment() {
     private final var LOGINFO = "LIBRARYLIST_ACTIVITY"
     private lateinit var viewModel: LibraryListViewModel
     private lateinit var dao: BookDAO
+    private lateinit var publicationDAO: PublicationDAO
+    private lateinit var publicationAdapter: PublicationAdapter
+    private var publications: ArrayList<Publication> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,15 +89,26 @@ class LibraryListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 //        init()
 //        dao = BookDAOSQLImpl(activity)
-        dao = activity?.let { BookDAOSQLImpl(it) }!!
-        books = dao.getBooks()
+//        dao = activity?.let { BookDAOSQLImpl(it) }!!
+//        books = dao.getBooks()
+//
+        publicationDAO = activity?.let{PublicationDAOSQLImpl(it)}!!
 
-        bookAdapter = BookAdapter(books,activity)
+
+
+
+
+
+
+
+        var getBook = publicationDAO.getPublicationType("Book")
+        publicationAdapter = PublicationAdapter(publications,activity)
         binding.bookListRecycler.layoutManager = LinearLayoutManager(activity)
-        binding.bookListRecycler.adapter = bookAdapter
+        binding.bookListRecycler.adapter = publicationAdapter
+
 
         var swipeCallBack = SwipeCallBack(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
-        swipeCallBack.bookAdapter = bookAdapter
+//        swipeCallBack.publicationAdapter = publicationAdapter
         itemTouchHelper = ItemTouchHelper(swipeCallBack)
         itemTouchHelper.attachToRecyclerView(binding.bookListRecycler)
 

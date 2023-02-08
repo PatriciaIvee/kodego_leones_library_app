@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ph.kodego.leones.patricia.ivee.libraryapp.R
 import ph.kodego.leones.patricia.ivee.libraryapp.adapter.BookAdapter
 import ph.kodego.leones.patricia.ivee.libraryapp.adapter.PublicationAdapter
-import ph.kodego.leones.patricia.ivee.libraryapp.dao.BookDAOSQLImpl
-import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAO
-import ph.kodego.leones.patricia.ivee.libraryapp.dao.PublicationDAOSQLImpl
+import ph.kodego.leones.patricia.ivee.libraryapp.dao.*
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.FragmentLibraryListBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.databinding.FragmentSearchBinding
 import ph.kodego.leones.patricia.ivee.libraryapp.model.publications.Book
@@ -27,6 +25,7 @@ class SearchFragment : Fragment() {
     private var publications: ArrayList<Publication> = ArrayList()
     private var publicationAuthors: ArrayList<PublicationAuthors> = ArrayList()
     private lateinit var publicationDAO:PublicationDAO
+    private lateinit var authorDAO: AuthorDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +47,18 @@ class SearchFragment : Fragment() {
 
         publicationDAO = activity?.let { PublicationDAOSQLImpl(it) }!!
         publications = publicationDAO.getPublications()
-//        publications = publicationDAO.getPublicationType()
-//        publicationAuthors = publicationDAO.getPublicationWithAuthors()
+        authorDAO = activity?.let{AuthorDAOSQLImpl(it)}!!
+
+        var authors = publicationDAO.getPublicationWithAuthors()
+        publicationAuthors = publicationDAO.getPublicationWithAuthors()
+
 
         publicationAdapter = PublicationAdapter(publications,activity)
         binding.publicationListRecycler.layoutManager = LinearLayoutManager(activity)
         binding.publicationListRecycler.adapter = publicationAdapter
+//        authorDAO.getAuthors()
+
+//        publications = publicationDAO.getPublicationType()
 
     }
 

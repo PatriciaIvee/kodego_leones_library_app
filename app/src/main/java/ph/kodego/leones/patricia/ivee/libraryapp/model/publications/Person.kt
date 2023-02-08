@@ -12,9 +12,16 @@ open class Person() {
 
 }
 
-class Author(): Person() {
+class Author(){
+    var personFirstName:String = ""
+    var personLastName: String = ""
     var authorId = 0
-    var publicationId = 0
+    var publicationAuthorId = 0
+
+    constructor(firstName: String, lastName:String) : this() {
+        this.personFirstName = firstName
+        this.personLastName = lastName
+    }
 }
 
 class Illustrator(): Person() {
